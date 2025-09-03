@@ -28,7 +28,7 @@ public class WebApp {
             //HechoDTO hecho = proxy.buscarHechoXId("1");
 
             // Mostrar el resultado en consola
-            System.out.println("Hecho recibido: " + hecho);
+            //System.out.println("Hecho recibido: " + hecho);
 
         } catch (Exception e) {
             e.printStackTrace();
