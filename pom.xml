@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
->
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -10,7 +10,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.2.3</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>ar.edu.utn.dds.k3003</groupId>
@@ -22,15 +22,12 @@
   <properties>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <!-- Dependencies versions -->
-    <junit.version>5.10.2</junit.version>
     <mockito.version>5.11.0</mockito.version>
-    <retrofit.version>2.11.0</retrofit.version>
+    <junit.version>5.10.2</junit.version>
   </properties>
 
   <dependencies>
-    <!-- Spring Boot Starters -->
+    <!-- Spring Boot -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -57,43 +54,34 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Existing Dependencies -->
+    <!-- Jackson XML -->
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
     </dependency>
 
+    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <optional>true</optional>
+      <version>1.18.32</version>
+      <scope>provided</scope>
     </dependency>
 
+    <!-- Mockito -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>${mockito.version}</version>
-      <!-- Si se pone de scope test, no funciona ... -->
       <scope>compile</scope>
     </dependency>
 
+    <!-- DDS 2025 -->
     <dependency>
       <groupId>com.github.ezequieljsosa</groupId>
       <artifactId>dds-eval-tp2025</artifactId>
-      <version>0.0.6</version>
+      <version>0.0.7</version>
     </dependency>
-
-    <dependency>
-      <groupId>com.squareup.retrofit2</groupId>
-      <artifactId>retrofit</artifactId>
-      <version>${retrofit.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.retrofit2</groupId>
-      <artifactId>converter-jackson</artifactId>
-      <version>${retrofit.version}</version>
-    </dependency>
-
 
     <!-- Spring Boot Test -->
     <dependency>
@@ -101,7 +89,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
@@ -116,27 +103,6 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.1</version>
-        <configuration>
-          <suppressionsLocation>.code_config/checkstyle-suppressions.xml</suppressionsLocation>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.22.0</version>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.8.3.0</version>
-        <configuration>
-          <excludeFilterFile>.code_config/spotbugs-exclude.xml</excludeFilterFile>
         </configuration>
       </plugin>
     </plugins>

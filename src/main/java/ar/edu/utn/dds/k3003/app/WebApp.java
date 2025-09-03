@@ -17,13 +17,13 @@ import java.util.TimeZone;
 public class WebApp {
     public static void main(String[] args) {
 
-        var env = System.getenv();
-        var port = Integer.parseInt(env.getOrDefault("PORT", "8080"));
-        var app = Javalin.create(config -> {
-            config.jsonMapper(new JavalinJackson().updateMapper(mapper -> {
-                configureObjectMapper(mapper);
-            }));
-        }).start(port);
+        //var env = System.getenv();
+        //var port = Integer.parseInt(env.getOrDefault("PORT", "8080"));
+        //var app = Javalin.create(config -> {
+        //    config.jsonMapper(new JavalinJackson().updateMapper(mapper -> {
+        //        configureObjectMapper(mapper);
+        //    }));
+        //}).start(port);
         //ObjectMapper objectMapper = WebApp.createObjectMapper();
 
         // Inicializar el proxy con la URL de tu compañero
