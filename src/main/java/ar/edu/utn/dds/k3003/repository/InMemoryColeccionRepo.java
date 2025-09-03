@@ -1,28 +1,43 @@
 package ar.edu.utn.dds.k3003.repository;
 
-import ar.edu.utn.dds.k3003.model.Coleccion;
+import ar.edu.utn.dds.k3003.controller.SolicitudController;
+import ar.edu.utn.dds.k3003.model.Solicitud;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class InMemoryColeccionRepo implements ColeccionRepository {
+@Repository
+@Profile("test")
+public class InMemoryColeccionRepo implements SolicitudRepository {
 
-  private List<Coleccion> colecciones;
+  private List<Solicitud> solicitudes;
 
-  public InMemoryColeccionRepo(){
-    this.colecciones = new ArrayList<>();
+  public InMemoryColeccionRepo() {
+    this.solicitudes = new ArrayList<>();
+  }
+
+
+  @Override
+  public Optional<Solicitud> findById(Long id) {
+    return this.solicitudes.stream().filter(x -> x.getId().equals(id)).findFirst();
   }
 
   @Override
-  public Optional<Coleccion> findById(String id) {
-    return this.colecciones.stream().filter(x -> x.getNombre().equals(id)).findFirst();
+  public Solicitud save(Solicitud sol) {
+    this.solicitudes.add(sol);
+    return sol;
   }
 
   @Override
-  public Coleccion save(Coleccion col) {
-    this.colecciones.add(col);
-    col.setFechaModificacion(LocalDateTime.now());
-    return col;
+  public List<Solicitud> findAll() {
+    return this.solicitudes.stream().toList();
+  }
+
+  @Override
+  public List<Solicitud> findByHechoId(String hechoId) {
+    return this.solicitudes.stream().filter(x -> x.getHechoId().equals(hechoId)).toList();
   }
 }
