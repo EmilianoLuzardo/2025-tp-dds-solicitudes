@@ -17,36 +17,38 @@ import java.util.TimeZone;
 public class WebApp {
     public static void main(String[] args) {
 
-
-        ObjectMapper objectMapper = WebApp.createObjectMapper();
+        var env = System.getenv();
+        var port = Integer.parseInt(env.getOrDefault("PORT", "8080"));
+        var app = Javalin.create(config -> {
+            config.jsonMapper(new JavalinJackson().updateMapper(mapper -> {
+                configureObjectMapper(mapper);
+            }));
+        }).start(port);
+        //ObjectMapper objectMapper = WebApp.createObjectMapper();
 
         // Inicializar el proxy con la URL de tu compañero
-        HechosProxy proxy = new HechosProxy(objectMapper);
+        //HechosProxy proxy = new HechosProxy(objectMapper);
 
-        try {
+        //try {
             // Hacer la llamada al endpoint de prueba
             //HechoDTO hecho = proxy.buscarHechoXId("1");
 
             // Mostrar el resultado en consola
             //System.out.println("Hecho recibido: " + hecho);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        // }
 
         /*
-        var env = System.getenv();
+
         var objectMapper = createObjectMapper();
         var fachada = new Fachada();
         fachada.setHechosProxy( new HechosProxy(objectMapper));
 
-        var port = Integer.parseInt(env.getOrDefault("PORT", "8080"));
 
-        var app = Javalin.create(config -> {
-            config.jsonMapper(new JavalinJackson().updateMapper(mapper -> {
-                configureObjectMapper(mapper);
-            }));
-        }).start(port);
+
+
 
         try {
             fachada.validarHechoAsociado("1");
