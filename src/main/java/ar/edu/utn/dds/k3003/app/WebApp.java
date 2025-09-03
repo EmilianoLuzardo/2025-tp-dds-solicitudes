@@ -25,7 +25,7 @@ public class WebApp {
 
         try {
             // Hacer la llamada al endpoint de prueba
-            HechoDTO hecho = proxy.buscarHechoXId("1");
+            //HechoDTO hecho = proxy.buscarHechoXId("1");
 
             // Mostrar el resultado en consola
             System.out.println("Hecho recibido: " + hecho);
